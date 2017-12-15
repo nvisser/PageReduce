@@ -1,24 +1,19 @@
 package nl.bcome.pageranker;
 
-import java.io.IOException;
-
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class WordCountMapper extends
-        Mapper<Object, Text, Text, IntWritable> {
+import java.io.IOException;
 
-    private final IntWritable ONE = new IntWritable(1);
-    private Text word = new Text();
 
-    public void map(Object key, Text value, Context context)
-            throws IOException, InterruptedException {
+class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
-        String[] csv = value.toString().split(",");
-        for (String str : csv) {
-            word.set(str);
-            context.write(word, ONE);
+    public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
+        String[] tokens = value.toString().split("\\s");
+        for (String s : tokens) {
+            context.write(new Text(s), new IntWritable(1));
         }
     }
 }

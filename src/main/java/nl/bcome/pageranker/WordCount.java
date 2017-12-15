@@ -1,9 +1,5 @@
 package nl.bcome.pageranker;
 
-import java.io.IOException;
-
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -11,49 +7,37 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
 
 public class WordCount {
 
-    public static void main(String[] args) throws IOException,
-            InterruptedException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception {
+        Job job = new Job();
+        job.setJarByClass(WordCount.class);
+        /*
+         * Volgende twee regels bepalen waar input gelezen wordt: input van cmd-line argument #1, output naar cmd-line argument #2.
+         * Bijvoorbeeld: specificeer op de command-line "myinput" "myoutput" en de files in "myinput" worden gelezen en output
+         * wordt weggeschreven naar "myoutput".
+         * Let op: Hadoop geeft een error als je probeert naar een bestaande output-directory te schrijven, dus maak die
+         * of uniek voor elke keer (evt. programmatisch) of verwijder de output-directory iedere keer.
+         */
+        FileInputFormat.addInputPath(job, new Path(args[0]));
 
-        Path inputPath = new Path(args[0]);
-        Path outputDir = new Path(args[1]);
+        String pathname = args[1];
+        /*
+         * uncomment the following code to append a random number (0-9999) to the output dir each time.
+         */
+        // pathname = ""+args[1]+"."+ new Random().nextInt(9999);
+        // System.err.println("Output was sent to directory "+pathname);
 
-        // Create configuration
-        Configuration conf = new Configuration(true);
+        FileOutputFormat.setOutputPath(job, new Path(pathname));
 
-        // Create job
-        Job job = new Job(conf, "WordCount");
-        job.setJarByClass(WordCountMapper.class);
-
-        // Setup MapReduce
         job.setMapperClass(WordCountMapper.class);
         job.setReducerClass(WordCountReducer.class);
-        job.setNumReduceTasks(1);
-
-        // Specify key / value
+        job.setInputFormatClass(TextInputFormat.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        // Input
-        FileInputFormat.addInputPath(job, inputPath);
-        job.setInputFormatClass(TextInputFormat.class);
-
-        // Output
-        FileOutputFormat.setOutputPath(job, outputDir);
-        job.setOutputFormatClass(TextOutputFormat.class);
-
-        // Delete output if exists
-        FileSystem hdfs = FileSystem.get(conf);
-        if (hdfs.exists(outputDir))
-            hdfs.delete(outputDir, true);
-
-        // Execute job
-        int code = job.waitForCompletion(true) ? 0 : 1;
-        System.exit(code);
-
+        job.waitForCompletion(true);
     }
-
 }
