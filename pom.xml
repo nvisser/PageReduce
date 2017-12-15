@@ -106,7 +106,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>nl.bcome.pageranker.WordCount</mainClass>
+                    <mainClass>nl.bcome.pageranker.WordCounter.WordCount</mainClass>
                 </configuration>
             </plugin>
             <plugin>

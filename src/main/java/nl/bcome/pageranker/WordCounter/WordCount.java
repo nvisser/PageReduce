@@ -1,4 +1,4 @@
-package nl.bcome.pageranker;
+package nl.bcome.pageranker.WordCounter;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -7,6 +7,8 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import java.util.Random;
 
 
 public class WordCount {
@@ -27,7 +29,7 @@ public class WordCount {
         /*
          * uncomment the following code to append a random number (0-9999) to the output dir each time.
          */
-        // pathname = ""+args[1]+"."+ new Random().nextInt(9999);
+         pathname = ""+args[1]+"."+ new Random().nextInt(9999);
         // System.err.println("Output was sent to directory "+pathname);
 
         FileOutputFormat.setOutputPath(job, new Path(pathname));

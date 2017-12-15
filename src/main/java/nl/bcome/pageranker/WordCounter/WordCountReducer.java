@@ -1,4 +1,4 @@
-package nl.bcome.pageranker;
+package nl.bcome.pageranker.WordCounter;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
