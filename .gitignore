@@ -4,8 +4,7 @@
 .Trash-*
 .nfs*
 target/
-input
-output
+output*/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
