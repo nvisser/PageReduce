@@ -13,7 +13,8 @@ class WordLengthMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
         String[] tokens = value.toString().split("\\s");
         for (String s : tokens) {
-            context.write(new Text(s), new IntWritable(1));
+            String length = String.valueOf(s.length());
+            context.write(new Text(length), new IntWritable(1));
         }
     }
 }
