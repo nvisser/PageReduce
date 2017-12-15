@@ -11,10 +11,12 @@ import java.io.IOException;
 class WordLengthMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
-        String[] tokens = value.toString().split("\\s");
+        String[] tokens = value.toString().split("\\W");
         for (String s : tokens) {
-            String length = String.valueOf(s.length());
-            context.write(new Text(length), new IntWritable(1));
+            int length = s.length();
+            if (length > 0) {
+                context.write(new Text(String.valueOf(length)), new IntWritable(1));
+            }
         }
     }
 }
