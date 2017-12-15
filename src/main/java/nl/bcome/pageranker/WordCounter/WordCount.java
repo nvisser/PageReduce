@@ -29,7 +29,7 @@ public class WordCount {
         /*
          * uncomment the following code to append a random number (0-9999) to the output dir each time.
          */
-         pathname = ""+args[1]+"."+ new Random().nextInt(9999);
+        pathname = "" + args[1] + "." + new Random().nextInt(9999);
         // System.err.println("Output was sent to directory "+pathname);
 
         FileOutputFormat.setOutputPath(job, new Path(pathname));
