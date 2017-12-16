@@ -1,8 +1,8 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Suspendisse vel dapibus lorem. Cras nec velit nisl.
-Fusce sagittis metus ac neque feugiat fermentum et ut orci.
-Morbi sodales ac odio in imperdiet.
-Cras porttitor, lorem id gravida euismod, lorem purus varius orci,
-sit amet egestas mi nunc non sem. Nullam efficitur massa sed massa ultrices rutrum.
-Aliquam porta justo nisl, feugiat congue diam scelerisque sed.
-Interdum et malesuada fames ac ante ipsum primis in faucibus.
+yahoo.com news sports finance email celebrity
+amazon.com shoes books jeans
+google.com news finance email search
+microsoft.com operating-system productivity search
+target.com shoes books jeans groceries
+wegmans.com books groceries
+facebook.com news social sports
+linkedin.com news recruitment
