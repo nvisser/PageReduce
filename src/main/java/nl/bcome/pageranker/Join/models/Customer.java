@@ -9,6 +9,23 @@ public class Customer {
     String name;
     @SerializedName("ContactName")
     String contactName;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
     @SerializedName("Country")
     String country;
 }
