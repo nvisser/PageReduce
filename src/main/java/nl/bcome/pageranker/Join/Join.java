@@ -34,7 +34,7 @@ public class Join {
         job.setReducerClass(JoinReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(Text.class);
 
         job.waitForCompletion(true);
     }

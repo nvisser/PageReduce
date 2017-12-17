@@ -10,7 +10,7 @@ import java.io.IOException;
 class JoinMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
-        System.out.println("MAP: Key=" + Key.toString() + " - Value="+ value.toString());
+        System.out.println("MAP: Key=" + Key.toString() + "\t- Value="+ value.toString());
 //        String[] tokens = value.toString().split("\\s");
 //        for (String s : tokens) {
             context.write(new Text("key"), new Text("value"));
