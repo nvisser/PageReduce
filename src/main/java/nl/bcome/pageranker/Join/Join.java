@@ -1,5 +1,6 @@
 package nl.bcome.pageranker.Join;
 
+import nl.bcome.pageranker.Join.models.Customer;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -33,8 +34,8 @@ public class Join {
         job.setMapperClass(JoinMapper.class);
         job.setReducerClass(JoinReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Text.class);
+        job.setOutputKeyClass(IntWritable.class);
+        job.setOutputValueClass(Customer.class);
 
         job.waitForCompletion(true);
     }
