@@ -1,5 +1,6 @@
 package nl.bcome.pageranker.Join;
 
+import nl.bcome.pageranker.Join.models.Customer;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -25,9 +26,6 @@ public class Join {
          */
         FileInputFormat.addInputPath(job, new Path("input/input-join"));
 
-        /*
-         * uncomment the following code to append a random number (0-9999) to the output dir each time.
-         */
         String pathname = "" + "output" + "." + new Random().nextInt(9999);
         // System.err.println("Output was sent to directory "+pathname);
 
@@ -36,8 +34,9 @@ public class Join {
         job.setMapperClass(JoinMapper.class);
         job.setReducerClass(JoinReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(IntWritable.class);
+        job.setOutputValueClass(Text.class);
+//        job.setMapOutputValueClass(Customer.class);
 
         job.waitForCompletion(true);
     }

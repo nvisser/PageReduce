@@ -1,14 +1,14 @@
 package nl.bcome.pageranker.Join;
 
+import nl.bcome.pageranker.Join.models.Customer;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-class JoinReducer extends Reducer<Text, Text, Text, IntWritable> {
-    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        System.out.println("MAP: Key=" + key.toString() + " - Value="+ values.toString());
+class JoinReducer extends Reducer<IntWritable, Customer, Text, IntWritable> {
+    public void reduce(Text key, Iterable<Customer> values, Context context) throws IOException, InterruptedException {
         int sum = 0;
 //        for (IntWritable i : values) {
 //            sum += i.get();
