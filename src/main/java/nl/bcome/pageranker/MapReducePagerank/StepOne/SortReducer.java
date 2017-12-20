@@ -1,4 +1,4 @@
-package main.MapReducePagerank.StepOne;
+package nl.bcome.pageranker.MapReducePagerank.StepOne;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;

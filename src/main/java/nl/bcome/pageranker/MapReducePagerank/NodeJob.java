@@ -1,4 +1,4 @@
-package main.MapReducePagerank;
+package nl.bcome.pageranker.MapReducePagerank;
 
 import main.MapReducePagerank.StepOne.SortMapper;
 import main.MapReducePagerank.StepOne.SortReducer;
