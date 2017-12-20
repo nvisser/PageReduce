@@ -8,12 +8,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 
-public class IncomingNeighborsMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+public class IncomingAuthorityMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
         String[] tokens = value.toString().split(" ");
-        for (String page : tokens) {
-            context.write(new Text(page), new IntWritable(1));
-        }
+
+        // Incoming
+        context.write(new Text(tokens[1]), new Text(tokens[0]));
     }
 }

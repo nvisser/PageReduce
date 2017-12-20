@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 
-public class OutgoingNeighborsMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+public class OutgoingHubMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
         String[] tokens = value.toString().split(" ");
