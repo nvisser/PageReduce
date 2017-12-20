@@ -1,9 +1,9 @@
 package nl.bcome.pageranker.MapReducePagerank;
 
-import main.MapReducePagerank.StepOne.SortMapper;
-import main.MapReducePagerank.StepOne.SortReducer;
-import main.MapReducePagerank.StepTwo.CalculateMapper;
-import main.MapReducePagerank.StepTwo.CalculateReducer;
+import nl.bcome.pageranker.MapReducePagerank.StepOne.SortMapper;
+import nl.bcome.pageranker.MapReducePagerank.StepOne.SortReducer;
+import nl.bcome.pageranker.MapReducePagerank.StepTwo.CalculateMapper;
+import nl.bcome.pageranker.MapReducePagerank.StepTwo.CalculateReducer;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
