@@ -14,8 +14,8 @@ public class IncomingAuthorityMapper extends Mapper<LongWritable, Text, Text, Te
         String[] tokens = value.toString().split(" ");
 
         // Incoming
-        // Hubs and auths start at one
-        String hubAuth = String.format("%s %d %d", tokens[0], 1, 1);
+        // Page hub auth norm
+        String hubAuth = String.format("%s %d %d %d", tokens[0], 1, 1, 0);
         context.write(new Text(tokens[1]), new Text(hubAuth));
     }
 }

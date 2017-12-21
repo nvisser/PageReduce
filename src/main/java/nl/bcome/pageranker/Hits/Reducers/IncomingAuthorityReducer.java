@@ -8,18 +8,19 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 public class IncomingAuthorityReducer extends Reducer<Text, Text, Text, DoubleWritable> {
-    public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+    public void reduce(Text p, Iterable<Text> incomingNeighbors, Context context) throws IOException, InterruptedException {
         double theAuth = 0;
-        for (Text incomingNeighbor : values) {
-            StringTokenizer x = new StringTokenizer(incomingNeighbor.toString());
+        int norm = 0;
+        for (Text q : incomingNeighbors) {
+            StringTokenizer x = new StringTokenizer(q.toString());
             String page = x.nextToken();
 
             double auth = Double.parseDouble(x.nextToken());
             double hub = Double.parseDouble(x.nextToken());
 
             theAuth += hub;
-            System.err.println("Auth score for " + key.toString() + " is now at " + theAuth);
+            System.err.println("Auth score for " + p.toString() + " is now at " + theAuth);
         }
-        context.write(key, new DoubleWritable(theAuth));
+        context.write(p, new DoubleWritable(theAuth));
     }
 }
