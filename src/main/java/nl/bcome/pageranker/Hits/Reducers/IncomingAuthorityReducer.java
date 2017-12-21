@@ -21,7 +21,9 @@ public class IncomingAuthorityReducer extends Reducer<Text, Text, Text, Text> {
             theAuth += hub;
             System.err.println("Auth score for " + p.toString() + " is now at " + theAuth);
         }
-        norm = Math.sqrt(theAuth);
+        norm += theAuth * theAuth;
+        System.err.println("Norm for " + p.toString() + " is now " + norm);
+
         String result = String.format("%s %f %f", p, theAuth, norm);
         context.write(p, new Text(result));
     }
