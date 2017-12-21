@@ -49,7 +49,6 @@ public class Hits {
 
         job.setMapOutputValueClass(Text.class);
         job.setOutputValueClass(Text.class);
-//        job.setOutputValueClass(Text.class);
 
         job.waitForCompletion(true);
 
@@ -74,7 +73,6 @@ public class Hits {
 
         job.setMapOutputValueClass(Text.class);
         job.setOutputValueClass(Text.class);
-//        job.setOutputValueClass(Text.class);
 
         job.waitForCompletion(true);
 
@@ -99,7 +97,6 @@ public class Hits {
 
         job.setMapOutputValueClass(Text.class);
         job.setOutputValueClass(Text.class);
-//        job.setOutputValueClass(Text.class);
 
         job.waitForCompletion(true);
 
