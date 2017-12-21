@@ -1,9 +1,7 @@
 package nl.bcome.pageranker.Hits;
 
-import nl.bcome.pageranker.Hits.Mappers.IncomingAuthorityMapper;
-import nl.bcome.pageranker.Hits.Mappers.OutgoingHubMapper;
-import nl.bcome.pageranker.Hits.Reducers.IncomingAuthorityReducer;
-import nl.bcome.pageranker.Hits.Reducers.OutgoingHubReducer;
+import nl.bcome.pageranker.Hits.Mappers.*;
+import nl.bcome.pageranker.Hits.Reducers.*;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -66,8 +64,8 @@ public class Hits {
         FileInputFormat.addInputPath(job, new Path("output/output-hits/IncomingNeighbors"));
         FileOutputFormat.setOutputPath(job, new Path("output/output-hits/calculatedAuthScore" + new Random().nextInt(9999)));
 
-        job.setMapperClass(IncomingAuthorityMapper.class);
-        job.setReducerClass(IncomingAuthorityReducer.class);
+        job.setMapperClass(AuthScoreCalcMapper.class);
+        job.setReducerClass(AuthScoreCalcReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputKeyClass(Text.class);
 

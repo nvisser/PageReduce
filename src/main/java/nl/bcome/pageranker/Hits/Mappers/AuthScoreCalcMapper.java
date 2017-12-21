@@ -11,10 +11,15 @@ public class AuthScoreCalcMapper extends Mapper<LongWritable, Text, Text, Text> 
 
     public void map(LongWritable Key, Text value, Context context) throws IOException, InterruptedException {
         StringTokenizer x = new StringTokenizer(value.toString());
+        String page = x.nextToken();
+        double auth = Double.parseDouble(x.nextToken());
+        double norm = Double.parseDouble(x.nextToken());
 
-        // Incoming
-        // Page hub auth norm
-//        String hubAuth = String.format("%s %d %d %d", tokens[0], 1, 1, 0);
-//        context.write(new Text(tokens[1]), new Text(hubAuth));
+        norm = Math.sqrt(norm);
+
+        auth = auth / norm; // normalise the auth values
+
+        String authScore = String.format("%f %f", auth, norm);
+        context.write(new Text(page), new Text(authScore));
     }
 }
