@@ -6,7 +6,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class AuthScoreCalcReducer extends Reducer<Text, Text, Text, Text> {
+public class ScoreCalcReducer extends Reducer<Text, Text, Text, Text> {
     public void reduce(Text p, Iterable<Text> entries, Context context) throws IOException, InterruptedException {
         double auth = 0, norm = 0;
 
