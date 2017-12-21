@@ -25,6 +25,8 @@ public class Hits {
         // Calculate hub values
         outgoingNeighbors();
         calcScore("output/output-hits/OutgoingNeighbors", "output/output-hits/calculatedHubScore");
+
+        // Now what?
     }
 
     /**
@@ -63,7 +65,7 @@ public class Hits {
         job.setJarByClass(Hits.class);
 
         FileInputFormat.addInputPath(job, new Path(input));
-        FileOutputFormat.setOutputPath(job, new Path(output + new Random().nextInt(9999)));
+        FileOutputFormat.setOutputPath(job, new Path(output));// + new Random().nextInt(9999)));
 
         job.setMapperClass(AuthScoreCalcMapper.class);
         job.setReducerClass(ScoreCalcReducer.class);
