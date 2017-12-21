@@ -5,15 +5,11 @@ import nl.bcome.pageranker.Hits.Mappers.OutgoingHubMapper;
 import nl.bcome.pageranker.Hits.Reducers.IncomingAuthorityReducer;
 import nl.bcome.pageranker.Hits.Reducers.OutgoingHubReducer;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
-import java.util.Random;
 
 public class Hits {
 
@@ -58,7 +54,7 @@ public class Hits {
         job.setJarByClass(Hits.class);
 
         FileInputFormat.addInputPath(job, new Path("input/input-hits/step1"));
-        FileOutputFormat.setOutputPath(job, new Path("output/output-hits/OutgoingNeighbors" + new Random().nextInt(9999)));
+        FileOutputFormat.setOutputPath(job, new Path("output/output-hits/OutgoingNeighbors"));// + new Random().nextInt(9999)));
 
         job.setMapperClass(OutgoingHubMapper.class);
         job.setReducerClass(OutgoingHubReducer.class);
