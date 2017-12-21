@@ -36,8 +36,9 @@ public class Hits {
         job.setReducerClass(IncomingAuthorityReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputKeyClass(Text.class);
+
         job.setMapOutputValueClass(Text.class);
-        job.setOutputValueClass(DoubleWritable.class);
+        job.setOutputValueClass(Text.class);
 //        job.setOutputValueClass(Text.class);
 
         job.waitForCompletion(true);
