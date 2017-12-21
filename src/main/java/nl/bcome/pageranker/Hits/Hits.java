@@ -14,9 +14,17 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 public class Hits {
 
     public static void main(String[] args) throws Exception {
-        // Calculate incoming neighbors
+        // Calculate auth values
         incomingNeighbors();
+
+        // todo: update auth scores
+        // todo: normalise the auth values
+
+        // Calculate hub values
         outgoingNeighbors();
+
+        // todo: update all hub values
+        // todo: normalist the hub values
     }
 
     /**
