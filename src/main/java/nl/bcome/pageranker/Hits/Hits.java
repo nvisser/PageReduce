@@ -15,14 +15,14 @@ public class Hits {
 
     public static void main(String[] args) throws Exception {
         // Calculate auth values
-        incomingNeighbors();
+//        incomingNeighbors();
 
         // todo: update auth scores
         calcAuthScore();
         // todo: normalise the auth values
 
         // Calculate hub values
-        outgoingNeighbors();
+//        outgoingNeighbors();
 
         // todo: update all hub values
         // todo: normalist the hub values
