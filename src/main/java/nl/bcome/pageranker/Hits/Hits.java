@@ -1,7 +1,11 @@
 package nl.bcome.pageranker.Hits;
 
-import nl.bcome.pageranker.Hits.Mappers.*;
-import nl.bcome.pageranker.Hits.Reducers.*;
+import nl.bcome.pageranker.Hits.Mappers.AuthScoreCalcMapper;
+import nl.bcome.pageranker.Hits.Mappers.IncomingAuthorityMapper;
+import nl.bcome.pageranker.Hits.Mappers.OutgoingHubMapper;
+import nl.bcome.pageranker.Hits.Reducers.IncomingAuthorityReducer;
+import nl.bcome.pageranker.Hits.Reducers.OutgoingHubReducer;
+import nl.bcome.pageranker.Hits.Reducers.ScoreCalcReducer;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -15,17 +19,12 @@ public class Hits {
 
     public static void main(String[] args) throws Exception {
         // Calculate auth values
-//        incomingNeighbors();
-
-        // todo: update auth scores
-        calcAuthScore();
-        // todo: normalise the auth values
+        incomingNeighbors();
+        calcScore("output/output-hits/IncomingNeighbors", "output/output-hits/calculatedAuthScore");
 
         // Calculate hub values
-//        outgoingNeighbors();
-
-        // todo: update all hub values
-        // todo: normalist the hub values
+        outgoingNeighbors();
+        calcScore("output/output-hits/OutgoingNeighbors", "output/output-hits/calculatedHubScore");
     }
 
     /**
@@ -53,19 +52,21 @@ public class Hits {
     }
 
     /**
-     * Calculate incoming neighbors
+     * Calculate scores
      *
+     * @param input  What are we calculating?
+     * @param output Where do we dump it?
      * @throws Exception Oopsie.
      */
-    private static void calcAuthScore() throws Exception {
+    private static void calcScore(String input, String output) throws Exception {
         Job job = new Job();
         job.setJarByClass(Hits.class);
 
-        FileInputFormat.addInputPath(job, new Path("output/output-hits/IncomingNeighbors"));
-        FileOutputFormat.setOutputPath(job, new Path("output/output-hits/calculatedAuthScore" + new Random().nextInt(9999)));
+        FileInputFormat.addInputPath(job, new Path(input));
+        FileOutputFormat.setOutputPath(job, new Path(output + new Random().nextInt(9999)));
 
         job.setMapperClass(AuthScoreCalcMapper.class);
-        job.setReducerClass(AuthScoreCalcReducer.class);
+        job.setReducerClass(ScoreCalcReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputKeyClass(Text.class);
 
