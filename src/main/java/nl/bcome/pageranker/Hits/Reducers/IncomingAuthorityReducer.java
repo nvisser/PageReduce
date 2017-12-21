@@ -24,8 +24,9 @@ public class IncomingAuthorityReducer extends Reducer<Text, Text, Text, Text> {
         norm += theAuth * theAuth; // calculate the sum of the squared auth values to normalise
         System.err.println("Norm for " + p.toString() + " is now " + norm);
 
-        String result = String.format("%s %f %f", p, theAuth, norm);
+        String result = String.format("%f %f", theAuth, norm);
         context.write(p, new Text(result));
         // At some point we should do <code>norm = sqrt(norm)</code> - But it's not in this reducer. Where then?
+        // Perhaps the next mapper?
     }
 }
