@@ -19,9 +19,9 @@ public class Hits {
 
     public static void main(String[] args) throws Exception {
         // Calculate auth values
-        incomingNeighbors();
+//        incomingNeighbors();
         // Calculate hub values
-//        outgoingNeighbors();
+        outgoingNeighbors();
 
 //        calcScore("output/output-hits/IncomingNeighbors", "output/output-hits/calculatedAuthScore");
 
