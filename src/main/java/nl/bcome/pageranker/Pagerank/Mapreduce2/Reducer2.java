@@ -42,7 +42,8 @@ public class Reducer2 extends Reducer<Text, Text, Text, Text> {
 
         // Page rank formule
         double answer = a * (1 / g) + (1 - a) * (PmCm);
-
-        context.write(key, new Text(String.valueOf(answer) + " " + receivers));
+        if(!key.toString().equals("Deadnode")){
+            context.write(key, new Text(String.valueOf(answer) + " " + receivers));
+        }
     }
 }

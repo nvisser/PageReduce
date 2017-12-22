@@ -21,15 +21,21 @@ public class JobOrganizer {
         File output = new File("output");
         FileUtils.deleteDirectory(output);
 
+        JobOrganizer jobOrganizer = new JobOrganizer();
+        jobOrganizer.startIt(10, jobOrganizer);
+
+
+    }
+
+    private void  startIt(int amount, JobOrganizer job) throws Exception{
 
         //roept de eerste mapreduce aan
-        JobOrganizer jobOrganizer = new JobOrganizer();
-        jobOrganizer.Prepare("input/input-pagerank", "output/run-0");
+        job.Prepare("input/input-pagerank", "output/ronde1");
 
         //roept de tweede mapreduce aan
-        jobOrganizer.getCalculator("output/run-0", "output/run-1");
-        jobOrganizer.getCalculator("output/run-1", "output/run-2");
-
+        for(int i = 1; i != amount; i++){
+            job.getCalculator("output/ronde" + i, "output/ronde" + (i+1));
+        }
     }
 
     // voor pagerank hebben we de mapreduce techniek gesplitst voor 2 taken
