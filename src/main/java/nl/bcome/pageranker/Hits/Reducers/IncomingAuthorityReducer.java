@@ -6,7 +6,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 public class IncomingAuthorityReducer extends Reducer<Text, Text, Text, Text> {
     public void reduce(Text p, Iterable<Text> incomingNeighbors, Context context) throws IOException, InterruptedException {
