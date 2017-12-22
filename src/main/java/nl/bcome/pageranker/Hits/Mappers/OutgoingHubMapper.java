@@ -27,7 +27,7 @@ public class OutgoingHubMapper extends Mapper<LongWritable, Text, Text, Text> {
         String f = output.split("}:\\{")[0] + "}";
 
         Node first = new Gson().fromJson(f, Node.class);
-
+        context.write(new Text("+" + first.getName()), new Text(String.valueOf(first.getAuth())));
 
 
         // This is actually the best way to get a json array. Don't believe me? Neither do I.
@@ -40,6 +40,5 @@ public class OutgoingHubMapper extends Mapper<LongWritable, Text, Text, Text> {
                     new Gson().toJson(first, Node.class)
             ));
         }
-        context.write(new Text("+" + first.getName()), new Text(String.valueOf(first.getAuth())));
     }
 }
