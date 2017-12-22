@@ -29,7 +29,7 @@ public class OutgoingHubMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 
         // This is actually the best way to get a json array. Don't believe me? Neither do I.
-        output = "[{" + output.split("}:\\{")[1]+ "]";
+        output = "[{" + output.split("}:\\{")[1] + "]";
         JsonArray nodes = new JsonParser().parse(output).getAsJsonArray();
         for (JsonElement n : nodes) {
             Node node = new Gson().fromJson(n, Node.class);

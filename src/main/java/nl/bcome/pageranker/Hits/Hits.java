@@ -13,13 +13,11 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.util.Random;
-
 public class Hits {
 
     public static void main(String[] args) throws Exception {
         // Calculate auth values
-//        incomingNeighbors();
+        incomingNeighbors();
         // Calculate hub values
         outgoingNeighbors();
 
