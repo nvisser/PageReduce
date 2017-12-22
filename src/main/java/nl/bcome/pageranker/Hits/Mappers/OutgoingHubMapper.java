@@ -38,17 +38,5 @@ public class OutgoingHubMapper extends Mapper<LongWritable, Text, Text, Text> {
                     new Gson().toJson(first, Node.class)
             ));
         }
-
-
-//        for(String tok : output.split(",")) {
-//            Node n = new Gson().fromJson(x.nextToken(), Node.class);
-//            n.getHub();
-//        }
-//        Node n = new Gson().fromJson(x.nextToken(), Node.class);
-
-        // Incoming
-        //                                            Page, hub, auth, norm
-//        String hubAuth = String.format("%s %d %d %d", tokens[0], 1, 1, 0);
-//        context.write(new Text(tokens[0]), new Text(hubAuth));
     }
 }
