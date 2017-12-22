@@ -25,7 +25,7 @@ public class OutgoingHubReducer extends Reducer<Text, Text, Text, Text> {
                 double hub = node.getHub();
                 allHub += hub;
 
-
+                // Calculate the hub score
                 theHub += auth;
                 System.err.println("Hub score for " + p.toString() + " is now at " + theHub);
             } else {
@@ -35,13 +35,9 @@ public class OutgoingHubReducer extends Reducer<Text, Text, Text, Text> {
 
         }
 
-
+        // ??
         finalAuth = pAuth + allHub;
-
-
-
-
-
+        // Unfortunately norm didn't make the cut.
         norm += theHub * theHub; // calculate the sum of the squared auth values to normalise
 //        System.err.println("Norm for " + p.toString() + " is now " + norm);
 
