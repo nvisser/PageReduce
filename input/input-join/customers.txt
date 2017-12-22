@@ -1,3 +1,0 @@
-{"CustomerID": "1","CustomerName": "Alfreds Futterkiste","ContactName": "Maria Anders","Country": "Germany"}
-{"CustomerID": "2","CustomerName": "Ana Trujillo Emparedados y helados","ContactName": "Ana Trujillo","Country": "Mexico"}
-{"CustomerID": "3","CustomerName": "Antonio Moreno Taquería","ContactName": "Antonio Moreno","Country": "Mexico"}

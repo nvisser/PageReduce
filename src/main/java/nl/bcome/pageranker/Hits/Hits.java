@@ -1,11 +1,10 @@
 package nl.bcome.pageranker.Hits;
 
-import nl.bcome.pageranker.Hits.Mappers.AuthScoreCalcMapper;
 import nl.bcome.pageranker.Hits.Mappers.IncomingAuthorityMapper;
 import nl.bcome.pageranker.Hits.Mappers.OutgoingHubMapper;
 import nl.bcome.pageranker.Hits.Reducers.IncomingAuthorityReducer;
 import nl.bcome.pageranker.Hits.Reducers.OutgoingHubReducer;
-import nl.bcome.pageranker.Hits.Reducers.ScoreCalcReducer;
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -13,9 +12,12 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+import java.io.File;
+
 public class Hits {
 
     public static void main(String[] args) throws Exception {
+        FileUtils.deleteDirectory(new File("output/output-hits"));
         // Calculate auth values
         incomingNeighbors();
         // Calculate hub values
@@ -59,24 +61,6 @@ public class Hits {
      * @param output Where do we dump it?
      * @throws Exception Oopsie.
      */
-    private static void calcScore(String input, String output) throws Exception {
-        Job job = new Job();
-        job.setJarByClass(Hits.class);
-
-        FileInputFormat.addInputPath(job, new Path(input));
-        FileOutputFormat.setOutputPath(job, new Path(output));// + new Random().nextInt(9999)));
-
-        job.setMapperClass(AuthScoreCalcMapper.class);
-        job.setReducerClass(ScoreCalcReducer.class);
-        job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputKeyClass(Text.class);
-
-        job.setMapOutputValueClass(Text.class);
-        job.setOutputValueClass(Text.class);
-
-        job.waitForCompletion(true);
-
-    }
 
     /**
      * Calculate outgoing neighbors
