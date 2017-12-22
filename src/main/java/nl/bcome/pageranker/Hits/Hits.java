@@ -20,11 +20,12 @@ public class Hits {
     public static void main(String[] args) throws Exception {
         // Calculate auth values
         incomingNeighbors();
-        calcScore("output/output-hits/IncomingNeighbors", "output/output-hits/calculatedAuthScore");
-
         // Calculate hub values
-        outgoingNeighbors();
-        calcScore("output/output-hits/OutgoingNeighbors", "output/output-hits/calculatedHubScore");
+//        outgoingNeighbors();
+
+//        calcScore("output/output-hits/IncomingNeighbors", "output/output-hits/calculatedAuthScore");
+
+//        calcScore("output/output-hits/OutgoingNeighbors", "output/output-hits/calculatedHubScore");
 
         // Now what?
     }
@@ -88,7 +89,7 @@ public class Hits {
         Job job = new Job();
         job.setJarByClass(Hits.class);
 
-        FileInputFormat.addInputPath(job, new Path("input/input-hits/step1"));
+        FileInputFormat.addInputPath(job, new Path("output/output-hits/IncomingNeighbors"));
         FileOutputFormat.setOutputPath(job, new Path("output/output-hits/OutgoingNeighbors"));// + new Random().nextInt(9999)));
 
         job.setMapperClass(OutgoingHubMapper.class);

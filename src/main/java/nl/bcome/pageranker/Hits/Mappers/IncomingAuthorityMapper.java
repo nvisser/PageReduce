@@ -1,5 +1,7 @@
 package nl.bcome.pageranker.Hits.Mappers;
 
+import com.google.gson.Gson;
+import nl.bcome.pageranker.Hits.Node;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -13,8 +15,9 @@ public class IncomingAuthorityMapper extends Mapper<LongWritable, Text, Text, Te
         String[] tokens = value.toString().split(" ");
 
         // Incoming
-        // Page hub auth norm
-        String hubAuth = String.format("%s %d %d %d", tokens[0], 1, 1, 0);
-        context.write(new Text(tokens[1]), new Text(hubAuth));
+        Node n = new Node(tokens[0], 1, 1);
+        context.write(new Text(tokens[1]), new Text(
+                new Gson().toJson(n, Node.class)
+        ));
     }
 }
