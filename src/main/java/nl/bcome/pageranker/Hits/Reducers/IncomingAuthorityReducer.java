@@ -11,15 +11,18 @@ public class IncomingAuthorityReducer extends Reducer<Text, Text, Text, Text> {
     public void reduce(Text p, Iterable<Text> incomingNeighbors, Context context) throws IOException, InterruptedException {
         double theAuth = 0; // update all authority values first
         double norm = 0;
+        StringBuilder relations = new StringBuilder();
         for (Text x : incomingNeighbors) { // p.incomingNeighbors is the set of pages that link to p
             Node n = new Gson().fromJson(x.toString(), Node.class);
             theAuth += n.getHub();
             System.err.println("Auth score for " + p.toString() + " is now at " + theAuth);
+            relations.append(x.toString()).append(",");
         }
+        relations.setLength(relations.length() - 1);
 
         norm += theAuth * theAuth; // calculate the sum of the squared auth values to normalise
 
         Node pn = new Node(p.toString(), theAuth, 1);
-        context.write(p, new Text(new Gson().toJson(pn, Node.class)));
+        context.write(p, new Text(new Gson().toJson(pn, Node.class) + ":" + relations));
     }
 }
