@@ -1,10 +1,9 @@
-package nl.bcome.pageranker.Pagerank;
+package nl.bcome.pageranker.MapReducePagerank;
 
-import nl.bcome.pageranker.Pagerank.StepOne.SortMapper;
-import nl.bcome.pageranker.Pagerank.StepOne.SortReducer;
-import nl.bcome.pageranker.Pagerank.StepTwo.CalculateMapper;
-import nl.bcome.pageranker.Pagerank.StepTwo.CalculateReducer;
-import org.apache.commons.io.FileUtils;
+import nl.bcome.pageranker.MapReducePagerank.StepOne.SortMapper;
+import nl.bcome.pageranker.MapReducePagerank.StepOne.SortReducer;
+import nl.bcome.pageranker.MapReducePagerank.StepTwo.CalculateMapper;
+import nl.bcome.pageranker.MapReducePagerank.StepTwo.CalculateReducer;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -12,14 +11,9 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.io.File;
-
 public class NodeJob {
 
     public static void main(String[] args) throws Exception {
-        File output = new File("output");
-        FileUtils.deleteDirectory(output);
-
         NodeJob nodeJob = new NodeJob();
         nodeJob.getNodesSorter("input", "output/run-0");
 
